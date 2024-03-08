@@ -14,8 +14,8 @@ const Signup = () => {
     const [responsemessage, setresponsemessage] = useState("")
     const [status, setstatus] = useState()
     const [myfile, setmyfile]=useState("")
-    //let url = "https://node-modularized.onrender.com/user/register"
-    let url = "http://localhost:7000/user/register"
+    let url = "https://node-modularized.onrender.com/user/register"
+    //let url = "http://localhost:7000/user/register"
     
     const registerUser=()=>{
       console.log(myfile);

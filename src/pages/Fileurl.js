@@ -3,7 +3,8 @@ import axios from 'axios'
 import Dashboard from './Dashboard'
 
 const Fileurl = () => {
-    let getimgurl = "http://localhost:8000/user/imgurl"
+    let getimgurl = "https://node-fileupload.onrender.com/user/imgurl"
+    //let getimgurl = "http://localhost:8000/user/imgurl"
     const[imgURL, setimgURL] = useState("")
     const email = localStorage.currentemail; let randomnumber = localStorage.randomnumber
     let token = localStorage.token
