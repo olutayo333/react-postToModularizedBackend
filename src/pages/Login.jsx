@@ -13,8 +13,8 @@ const Login = () => {
   const [izloading, setizloading] = useState(false)
   const [loading, setloading] = useState("Loading..........")
   
-  let url = "https://node-modularized.onrender.com/user/signin"
- // let url = "http://localhost:7000/user/edit"
+  //let url = "https://node-modularized.onrender.com/user/signin"
+ let url = "http://localhost:7000/user/signin"
   
   let navigate = useNavigate()
 
@@ -23,10 +23,20 @@ const Login = () => {
     
     axios.post (url,{email, password})
     .then((response)=>{
-      if(!response.data.status){alert(response.data.message); console.log(response, response.data.message)}
+      if(!response.data.status){alert(response.data.message); console.log(response)}
       else{
         localStorage.token = response.data.token
-        navigate("/dashboard") }
+        localStorage.currentemail = email
+
+        let allUsers= [...response.data.result]; console.log(allUsers);
+        let index = allUsers.findIndex((u)=> u.email == email); console.log(index);
+        localStorage.randomnumber = allUsers[index].randomnumber
+       
+
+        // setemail(allUsers[index].email); setfirstname(allUsers[index].firstname); setlastname(allUsers[index].lastname); setpics(allUsers[index].myfile)
+        
+        localStorage.registrationDate = 
+        navigate("/file") }
     })
   }
   

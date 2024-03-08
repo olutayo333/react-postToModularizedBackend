@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+// import {cloudinary} from 'cloudinary';
 
 const Signup = () => {
     let navigate = useNavigate();
@@ -13,12 +14,14 @@ const Signup = () => {
     const [responsemessage, setresponsemessage] = useState("")
     const [status, setstatus] = useState()
     const [myfile, setmyfile]=useState("")
-    let url = "https://node-modularized.onrender.com/user/register"
-    //let url = "http://localhost:7000/user/register"
+    //let url = "https://node-modularized.onrender.com/user/register"
+    let url = "http://localhost:7000/user/register"
     
     const registerUser=()=>{
       console.log(myfile);
-        axios.post(url, {firstname:name, lastname, email, password, myfile})
+      const randomnumber = Math.floor((Math.random()*10000000000)*10000000000)
+
+        axios.post(url, {firstname:name, lastname, email, password, myfile, randomnumber})
         .then((response)=>{
           console.log(response)
           
@@ -36,6 +39,17 @@ const Signup = () => {
       reader.readAsDataURL(myImage)
       reader.onload = ()=>{ setmyfile(reader.result); console.log(reader.result)}
   }
+
+    // let cloud = (e)=>{
+    //   //let myfile = req.body.myfile
+    //   let myImage = e.target.files[0]
+    //   cloudinary.v2.uploader.upload(myImage, (err, result)=>{
+    //   if (err){console.log("failed");}
+    //   else{console.log(result.secure_url);}
+    //   });
+    // }
+    
+
   return (
     <>
         <div> {responsemessage} </div>

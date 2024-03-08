@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard'
 import DisplayUser from './pages/DisplayUser'
 import FoodList from './pages/FoodList'
 import GetMyApi from './pages/GetMyApi'
+import Fileurl from './pages/Fileurl'
 
 const App = () => {
   // let token="12345"
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/display' element={<DisplayUser/> }/>
         <Route path='/foodlist' element={<FoodList/>}/>
         <Route path='/myapi' element={<GetMyApi/>}/>
+        <Route path='/file' element={<Fileurl/>}/> 
       </Routes>
     </div>
   )
