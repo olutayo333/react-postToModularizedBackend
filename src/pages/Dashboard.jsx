@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-const Dashboard = ({imgURL}) => {
-  let url = "https://node-modularized.onrender.com/user/dashboard"
-  let url_upload = "https://node-modularized.onrender.com/user/upload"
-  let url_uploadFile = "https://node-fileupload.onrender.com/user/upload" 
-  //let url= "http://localhost:7000/user/dashboard"
-   //let url_upload = "http://localhost:7000/user/upload"
-   //let url_uploadFile= "http://localhost:8000/user/upload"
+const Dashboard = ({imgLink}) => {
+  //  let url = "https://node-modularized.onrender.com/user/dashboard"
+  //  let url_upload = "https://node-modularized.onrender.com/user/upload"
+  // let url_uploadFile = "https://node-fileupload.onrender.com/user/upload" 
+  let url= "http://localhost:7000/user/dashboard"
+   let url_upload = "http://localhost:7000/user/upload"
+   let url_uploadFile= "http://localhost:8000/user/upload"
    
    const [myfile, setmyfile] = useState("")
    const [imgurl, setimgurl] = useState("")
    const [email, setemail] = useState("")
-   const [firstname, setfirstname] = useState("Olutayo")
+   const [firstname, setfirstname] = useState("")
    const [lastname, setlastname] = useState("")
    const[pics,setpics] = useState("")
   const [users, setusers] = useState([])
-  let token = localStorage.token
+  let token = localStorage.token; let allUsers
   const currentemail = localStorage.currentemail; let randomnumber = localStorage.randomnumber 
   
   let navigate = useNavigate()
 
-  
   useEffect(()=>{
+    
     axios.get(url, {
       headers: { "Authorization": `Bearer ${token}`,  "Content-Type": "application/json", "Accept": "application/json" }
     })
@@ -30,9 +30,9 @@ const Dashboard = ({imgURL}) => {
         //console.log(response);
         if(!response.data.status){ navigate("/signin") }
         else if(response.data.status)
-        { //setusers([...response.data.message]) ; 
-          console.log(response);
-          let allUsers= [...response.data.message]; // console.log(allUsers);
+        { setusers([...users, response.data.message]) ;  console.log(users);
+          //console.log(response); 
+           allUsers= [...response.data.message];  console.log(allUsers);
 
           let index = allUsers.findIndex((u)=> u.randomnumber == randomnumber ); console.log(index);
           setemail(allUsers[index].email); setfirstname(allUsers[index].firstname); setlastname(allUsers[index].lastname); setpics(allUsers[index].myfile)
@@ -75,16 +75,35 @@ const Dashboard = ({imgURL}) => {
     })
   }
 
+  const editImage = () =>{}
+
   return (
     <div>
-      <img src={imgURL} alt="" />
-      <h1> WELCOME {firstname} {lastname} <p>{email}</p> </h1>
+      {
+      ! imgLink?
+      <>
+        
+        
+        <h1> WELCOME {firstname} {lastname} <p>{email}</p> </h1>
+        
+        <input type="file" onChange={(e)=>setmyupload(e)} />
+        {/* <input type="file" onChange={(e)=>changeFile(e)} />
+          */}
+        <button onClick={upload}> Upload </button>
+        <button onClick={signOut}>sign out</button>
+      </>:
+        <>
+          <h1> {imgLink} </h1>
+           <img width={"20%"} src={imgLink} alt="" /> 
+          <button onClick={editImage}> Edit Image </button>
+          <h1> WELCOME {firstname} {lastname} <p>{email}</p> </h1>
+          
+          <input type="file" onChange={(e)=>setmyupload(e)} />
+          
+          <button onClick={signOut}>sign out</button>
+      </>   
       
-      <input type="file" onChange={(e)=>setmyupload(e)} />
-      {/* <input type="file" onChange={(e)=>changeFile(e)} />
-        */}
-      <button onClick={upload}> Upload </button>
-      <button onClick={signOut}>sign out</button>
+      }
     </div>
   )
 }

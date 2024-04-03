@@ -2,7 +2,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import img from "../assets/logo192.png"
 
 
@@ -40,7 +40,6 @@ const Login = () => {
     })
   }
   
-  
 
     function SizesExample() {
       return (
@@ -69,19 +68,20 @@ const Login = () => {
     <>
         {
            ! izloading ? 
-            <>
-              <h1>Login Page</h1>
-              <input type="text" placeholder='email' onChange={(e)=>setemail(e.target.value)} />
-              <input type='password' placeholder='password' onChange={(e)=>setPassword(e.target.value)}/>
-              <button className='btn btn-primary' onClick={signin}> Sign In </button>
-           </> :
+            <div className='container-fluid mt-5 '>
+              <h1 className='mx-auto'>Login Page</h1>
+              <input className='form form-control my-1' type="text" placeholder='email' onChange={(e)=>setemail(e.target.value)} />
+              <input className='form form-control my-2' type='password' placeholder='password' onChange={(e)=>setPassword(e.target.value)}/>
+              <button className='btn btn-primary w-100 my-2' onClick={signin}> Sign In </button>
+              <h5> You haven't register? <Link to ="/signup"> Register here </Link> </h5>
+           </div> :
            
           <div className='align-items-center'>
               {/* {SizesExample () } */}
               
               <h1>Login Page</h1>
               <input type="text"  placeholder={email} disabled />
-              <input type='password'  placeholder={password} disabled />
+              <input type='password'  placeholder="........" disabled />
 
               <Button variant="primary" disabled>
                   <Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" /> Loading...

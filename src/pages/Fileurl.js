@@ -3,18 +3,11 @@ import axios from 'axios'
 import Dashboard from './Dashboard'
 
 const Fileurl = () => {
-    let getimgurl = "https://node-fileupload.onrender.com/user/imgurl"
-    //let getimgurl = "http://localhost:8000/user/imgurl"
+    //let getimgurl = "https://node-fileupload.onrender.com/user/imgurl"
+    let getimgurl = "http://localhost:8000/user/imgurl"
     const[imgURL, setimgURL] = useState("")
     const email = localStorage.currentemail; let randomnumber = localStorage.randomnumber
     let token = localStorage.token
-
-    // const machines=[
-    //     {
-    //         id: 1,
-    //         img: img1,
-    //         text:"CPAP Machines",
-    //     },]
 
     // GETTING THE IMG URL
   useEffect(()=>{
@@ -26,7 +19,7 @@ const Fileurl = () => {
         if(!response.data.status){ console.log("can't load image") }
         else if(response.data.status)
         { 
-          console.log(response);
+          //console.log(response);
           let allImgURL= [...response.data.result];  console.log(allImgURL);
             
           let details = allImgURL.filter(u=>(u.email===email )) //filter returns the whole array 
@@ -43,12 +36,12 @@ const Fileurl = () => {
  
     return (
     <div>
-        {/* {imgURL} */}
-        <img width={"25%"} src={imgURL} alt="" />
-
+        {/* <img width={"25%"} src={imgURL} alt="" /> */}
         <Dashboard imgLink={imgURL}/>
+        
     </div>
   )
+  
 }
 
 export default Fileurl

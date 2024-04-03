@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 // import {cloudinary} from 'cloudinary';
 
 const Signup = () => {
@@ -14,8 +14,8 @@ const Signup = () => {
     const [responsemessage, setresponsemessage] = useState("")
     const [status, setstatus] = useState()
     const [myfile, setmyfile]=useState("")
-    let url = "https://node-modularized.onrender.com/user/register"
-    //let url = "http://localhost:7000/user/register"
+   // let url = "https://node-modularized.onrender.com/user/register"
+    let url = "http://localhost:7000/user/register"
     
     const registerUser=()=>{
       console.log(myfile);
@@ -56,15 +56,17 @@ const Signup = () => {
         {/* {
           status? <div className='alert alert-success'> </div> : <div className='alert alert-danger'> </div> 
         } */}
-        <form className='form form-control'>
-        <input  type='text' placeholder='firstname' onChange={(e)=>setname(e.target.value)} />
-        <input type='text' placeholder='lastname' onChange={(e)=>setlastname(e.target.value)} />
-        <input type='email' placeholder='email' onChange={(e)=>setemail(e.target.value)} />
-        <input type='password' placeholder='password' onChange={(e)=>setpassword(e.target.value)} />
-        <input type="file" onChange={(e)=>changeFile(e)} />
+        <div> <h1 className='animate__animated animate__flip animate__delay-3s animate__repeat-2	infinite animate__slow-3s text-center'> Registration Form </h1> </div> <hr/>
+        <form className='container-fluid' >
+        <input className='animate__animated animate__bounce form form-control' type='text' placeholder='firstname' onChange={(e)=>setname(e.target.value)} /> <br />
+        <input className='form form-control' type='text' placeholder='lastname' onChange={(e)=>setlastname(e.target.value)} /> <br />
+        <input className='form form-control' type='email' placeholder='email' onChange={(e)=>setemail(e.target.value)} />  <br />
+        <input className='form form-control' type='password' placeholder='password' onChange={(e)=>setpassword(e.target.value)} /> <br />
+        <input className='animate__animated animate__pulse animate__infinite infinite form form-control'  type="file" onChange={(e)=>changeFile(e)} /> <hr />
         {/* <input type="file" onChange={(e)=>setmyfile(e.target.files)} /> */}
-        <button onClick={registerUser}> Register </button>
+        <button className='animate__animated animate__pulse animate__infinite infinite btn btn-secondary w-100' onClick={registerUser}> Register </button>
         </form>
+        <h5 className='mx-5 my-3'> Already signed up? <Link to ="/signin"> Login </Link> </h5>
     </>
   )
 }

@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 const DisplayUser = () => {
-  let url = "https://node-modularized.onrender.com/user/display"
-  let url2 = "https://node-modularized.onrender.com/user/delete"
-  let editurl = "https://node-modularized.onrender.com/user/edit"
+  // let url = "https://node-modularized.onrender.com/user/display"
+  // let url2 = "https://node-modularized.onrender.com/user/delete"
+  // let editurl = "https://node-modularized.onrender.com/user/edit"
  
-  // let url = "http://localhost:7000/user/display"
-  // let url2 = "http://localhost:7000/user/delete"
-  // let editurl= "http://localhost:7000/user/edit"
+  let url = "http://localhost:7000/user/display"
+  let url2 = "http://localhost:7000/user/delete"
+  let editurl= "http://localhost:7000/user/edit"
 
   let token = localStorage.token
   let navigate = useNavigate()
